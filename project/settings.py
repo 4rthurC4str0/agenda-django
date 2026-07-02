@@ -55,7 +55,9 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'base_templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -116,3 +118,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = (
+    BASE_DIR / 'base_static',
+)
+
+# É o prefixo da URL que o navegador vai usar para acessar a pasta dos arquivos enviados pelo usuário (MEDIA_ROOT) 
+MEDIA_URL = 'media/'
+
+# É o caminho da pasta do disco do servidor, onde os arquivos enviados pelo usuário 
+# em algum campo ImageField ou FileField, serão salvos.
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# o django vai procurar tudo que é arquivo estático e vai jogar dentro dessa pasta 
+# aí nessa pasta é onde o servidor vai buscar os arquivos estáticos
+STATIC_ROOT = BASE_DIR / 'static' # collectstatic
+

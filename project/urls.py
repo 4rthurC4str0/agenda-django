@@ -15,8 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+# A função static() é um helper do Django que gera padrões de URL (urlpatterns) automaticamente, 
+# para servir arquivos de uma pasta específica.
+from django.conf.urls.static import static
+
+# da acesso a todas as configurações do projeto MEDIA_URL, etc
+from django.conf import settings
 
 urlpatterns = [
+    path('', include('contact.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# apenas para desenvolvimento 
+# o que o static está fazendo aqui é mapeando a url 'media/arquivo' 
+# executando uma view chamada 'serve' para retornar o arquivo como resposta HTTP
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  
