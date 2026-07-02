@@ -134,3 +134,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # aí nessa pasta é onde o servidor vai buscar os arquivos estáticos
 STATIC_ROOT = BASE_DIR / 'static' # collectstatic
 
+
+try:
+    from project.local_settings import *
+except ImportError: 
+    ...
